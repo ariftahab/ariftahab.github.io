@@ -6,13 +6,13 @@ Kişisel site: projeler ve yazılar. Astro ile üretilen statik site, GitHub Pag
 
 ```bash
 npm install
-npm run dev      # http://localhost:4321/blog/
+npm run dev      # http://localhost:4321/
 npm run build    # dist/ klasörüne üretir
 ```
 
 ## Yeni yazı
 
-`src/content/yazilar/` altına bir `.md` dosyası ekle. Dosya adı URL olur (`ilk-yazi.md` → `/blog/yazilar/ilk-yazi/`).
+`src/content/yazilar/` altına bir `.md` dosyası ekle. Dosya adı URL olur (`ilk-yazi.md` → `/yazilar/ilk-yazi/`).
 
 ```md
 ---
@@ -37,4 +37,4 @@ Metin...
 
 ## Görseller
 
-Dosyayı `public/img/` altına koy, Markdown'da `![açıklama](/blog/img/dosya.png)` diye kullan.
+Dosyayı `public/img/` altına koy, Markdown'da `![açıklama](/img/dosya.png)` diye kullan.

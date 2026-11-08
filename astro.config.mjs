@@ -1,8 +1,7 @@
 import { defineConfig } from "astro/config";
 
-// GitHub Pages: the site is served from https://ariftahab.github.io/blog/
-// If the repo is renamed to "ariftahab.github.io", set base to "/".
+// GitHub Pages: the repo is named "ariftahab.github.io", so the site is served from the root.
 export default defineConfig({
   site: "https://ariftahab.github.io",
-  base: "/blog",
+  base: "/",
 });

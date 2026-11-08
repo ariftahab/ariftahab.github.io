@@ -6,7 +6,7 @@ export const GITHUB = "https://github.com/ariftahab";
 export const LINKEDIN = "https://www.linkedin.com/in/arif-taha-b%C3%BClb%C3%BCl-824a451b4/";
 export const LINKEDIN_LABEL = "linkedin.com/in/arif-taha-bülbül";
 
-/** Prefixes a site path with the configured base (e.g. "/blog"). */
+/** Prefixes a site path with the configured base (e.g. "/" or "/blog"). */
 export function u(path = ""): string {
   const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   return `${base}/${path.replace(/^\//, "")}`;

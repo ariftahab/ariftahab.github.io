@@ -17,5 +17,5 @@ Yazının metni buraya gelir. Normal Markdown yazabilirsin.
 Görsel eklemek için dosyayı `public/img/` altına koyup şöyle yazarsın:
 
 ```md
-![açıklama](/blog/img/dosya.png)
+![açıklama](/img/dosya.png)
 ```
