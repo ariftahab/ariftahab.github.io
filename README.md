@@ -28,6 +28,11 @@ Metin...
 
 `proje` alanına `src/content/projeler/` altındaki bir dosyanın adı yazılır. Olmayan bir ad yazılırsa site derlenmez.
 
+Bir projeye bağlı yazılar iki yerde görünür:
+
+- **Proje sayfasında** tam metin olarak, eskiden yeniye art arda. Proje sayfası böylece o projenin baştan sona hikâyesi olur.
+- **Proje sayfasının en altında ve `/yazilar/` sayfasında** tek tek, yenisi en üstte.
+
 ## Yeni proje
 
 `src/content/projeler/` altına bir `.md` dosyası ekle. Alanlar `src/content.config.ts` içinde açıklanıyor.
