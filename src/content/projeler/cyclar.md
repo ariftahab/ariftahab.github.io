@@ -5,8 +5,10 @@ lead: Pahalı bir yol bilgisayarı almak yerine, gidondaki telefonu tek bakışt
 year: 2026
 stack: [flutter, gpx, dem, barometre]
 order: 4
-flow: ["GPX rota", "DEM yükseklik", "eğim bölümleri", "*sürüş ekranı"]
-flowCaption: rota bir kez işleniyor, sürüş sırasında barometre anlık eğimi ölçüyor
+
+gallery:
+  - { src: img/cyclar/harita.png, alt: harita sayfası }
+  - { src: img/cyclar/veri.png, alt: veri sayfası }
 ---
 
 ## Neden

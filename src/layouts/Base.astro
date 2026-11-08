@@ -5,9 +5,8 @@ import { NAME, EMAIL, GITHUB, LINKEDIN, LINKEDIN_LABEL, u } from "../lib/site";
 interface Props {
   title?: string;
   description?: string;
-  flow?: boolean; // load the workflow diagram script
 }
-const { title, description = "RAG, agent'lar ve yerel modeller üzerine projeler ve yazılar.", flow = false } = Astro.props;
+const { title, description = "RAG, agent'lar ve yerel modeller üzerine projeler ve yazılar." } = Astro.props;
 const pageTitle = title ? `${title} · ${NAME}` : NAME;
 ---
 <!doctype html>
@@ -44,6 +43,5 @@ const pageTitle = title ? `${title} · ${NAME}` : NAME;
     <div class="in mono"><span>© {new Date().getFullYear()} {NAME}</span></div>
   </footer>
 
-  {flow && <script is:inline src={u("flow.js")}></script>}
 </body>
 </html>

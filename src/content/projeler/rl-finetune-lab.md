@@ -5,8 +5,6 @@ lead: Lokal modelleri denemek ve fine-tune'un gerçekte nasıl çalıştığın�
 year: 2026
 stack: [sft, dpo, grpo, transformers]
 order: 5
-flow: ["base model", "SFT", "DPO", "*GRPO"]
-flowCaption: aynı testte önce eğitilmemiş model, sonra her yöntemden geçmiş model ölçülüyor
 ---
 
 ## Neden

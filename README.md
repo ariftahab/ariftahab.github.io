@@ -30,7 +30,10 @@ Metin...
 
 ## Yeni proje
 
-`src/content/projeler/` altına bir `.md` dosyası ekle. Alanlar `src/content.config.ts` içinde açıklanıyor. `flow` iş akışı diyagramını çizer: her öğe bir adım, iç içe liste paralel adımlar, `*` ile başlayan adım vurgulanır.
+`src/content/projeler/` altına bir `.md` dosyası ekle. Alanlar `src/content.config.ts` içinde açıklanıyor.
+
+- `diagram` (isteğe bağlı): sistem şeması. Düğümler bir ızgaraya `col`/`row` ile yerleşir, `edges` okları, `groups` kesikli çerçeveleri çizer. Alanlar `src/lib/diagram.ts` içinde. Örnek için `mevzuat-rag.md`'ye bak. Şema bir şey anlatmıyorsa koyma.
+- `gallery` (isteğe bağlı): yana kayan ekran görüntüleri. `src` yolu `public/` klasörüne göredir, örneğin `img/cyclar/harita.png`.
 
 ## Görseller
 

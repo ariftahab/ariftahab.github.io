@@ -2,6 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import PostList from "../../components/PostList.astro";
+import Diagram from "../../components/Diagram.astro";
 import { u, getPosts } from "../../lib/site";
 
 export async function getStaticPaths() {
@@ -14,7 +15,7 @@ const { Content } = await render(project);
 const posts = (await getPosts()).filter((p) => p.data.proje?.id === project.id);
 const d = project.data;
 ---
-<Base title={d.title} description={d.summary} flow={!!d.flow}>
+<Base title={d.title} description={d.summary}>
   <a class="back mono" href={u("#projeler")}>← projeler</a>
 
   <div class="p-head">
@@ -27,11 +28,14 @@ const d = project.data;
     </div>
   </div>
 
-  {d.flow && (
-    <figure>
-      <div data-flow={JSON.stringify(d.flow)}></div>
-      {d.flowCaption && <figcaption class="mono">{d.flowCaption}</figcaption>}
-    </figure>
+  {d.diagram && <Diagram diagram={d.diagram} />}
+
+  {d.gallery && (
+    <div class="gallery">
+      {d.gallery.map((img) => (
+        <figure><img src={u(img.src)} alt={img.alt} loading="lazy" /><figcaption class="mono">{img.alt}</figcaption></figure>
+      ))}
+    </div>
   )}
 
   <div class="prose">
