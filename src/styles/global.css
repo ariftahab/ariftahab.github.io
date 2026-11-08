@@ -118,11 +118,3 @@ article .prose { margin-top: 32px; }
 /* section pages (projeler, yazılar, iletişim) */
 .section-body { margin-top: 32px; }
 .back-home { margin-top: 48px; }
-
-/* project page: related posts rendered in full, one after another */
-.story { margin-top: 56px; padding-top: 32px; border-top: 1px solid var(--line); }
-.story-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.story-head h2 { font: 600 22px/1.3 Inter, system-ui, sans-serif; color: var(--fg); margin: 0; letter-spacing: -0.01em; }
-.story-head h2 a:hover { color: var(--accent); }
-.story-head time { color: var(--dim); flex-shrink: 0; }
-.story .prose { margin-top: 8px; }

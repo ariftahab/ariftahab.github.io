@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import PostList from "../../components/PostList.astro";
 import Diagram from "../../components/Diagram.astro";
-import { u, getPosts, shortDate } from "../../lib/site";
+import { u, getPosts } from "../../lib/site";
 
 export async function getStaticPaths() {
   const projects = await getCollection("projeler");
@@ -12,11 +12,7 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await render(project);
-const posts = (await getPosts()).filter((p) => p.data.proje?.id === project.id); // newest first, for the list
-// The same posts, oldest first, rendered in full so the project page reads as one continuous story.
-const story = await Promise.all(
-  [...posts].reverse().map(async (post) => ({ post, Content: (await render(post)).Content })),
-);
+const posts = (await getPosts()).filter((p) => p.data.proje?.id === project.id); // newest first
 const d = project.data;
 ---
 <Base title={d.title} description={d.summary}>
@@ -47,16 +43,6 @@ const d = project.data;
       <Content />
     </div>
   )}
-
-  {story.map(({ post, Content }) => (
-    <section class="story">
-      <div class="story-head">
-        <h2><a href={u(`yazilar/${post.id}/`)}>{post.data.title}</a></h2>
-        <time class="mono" datetime={post.data.date.toISOString()}>{shortDate(post.data.date)}</time>
-      </div>
-      <div class="prose"><Content /></div>
-    </section>
-  ))}
 
   <h2 class="mono">bu projeyle ilgili yazılar</h2>
   <PostList posts={posts} empty="Bu proje hakkında henüz yazı yok." />

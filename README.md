@@ -28,10 +28,7 @@ Metin...
 
 `proje` alanına `src/content/projeler/` altındaki bir dosyanın adı yazılır. Olmayan bir ad yazılırsa site derlenmez.
 
-Bir projeye bağlı yazılar iki yerde görünür:
-
-- **Proje sayfasında** tam metin olarak, eskiden yeniye art arda. Proje sayfası böylece o projenin baştan sona hikâyesi olur.
-- **Proje sayfasının en altında ve `/yazilar/` sayfasında** tek tek, yenisi en üstte.
+Bir projeye bağlı yazılar `/yazilar/` sayfasında ve proje sayfasının en altındaki "bu projeyle ilgili yazılar" listesinde görünür, yenisi en üstte. Projeyi anlatan yazı proje dosyasının gövdesine (frontmatter'ın altına) yazılır.
 
 ## Yeni proje
 
