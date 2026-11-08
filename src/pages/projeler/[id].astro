@@ -24,8 +24,8 @@ const d = project.data;
     <div class="meta mono">
       <span>{d.year}</span>
       <span>{d.stack.join(" · ")}</span>
-      {d.github && <a href={d.github}>github</a>}
     </div>
+    {d.github && <a class="gh mono" href={d.github}>GitHub'da incele →</a>}
   </div>
 
   {d.diagram && <Diagram diagram={d.diagram} />}
@@ -38,9 +38,11 @@ const d = project.data;
     </div>
   )}
 
-  <div class="prose">
-    <Content />
-  </div>
+  {project.body?.trim() && (
+    <div class="prose">
+      <Content />
+    </div>
+  )}
 
   <h2 class="mono">bu projeyle ilgili yazılar</h2>
   <PostList posts={posts} empty="Bu proje hakkında henüz yazı yok." />

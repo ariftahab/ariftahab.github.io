@@ -13,13 +13,15 @@ const posts = await getPosts();
   </header>
 
   <h2 class="mono" id="projeler">projeler</h2>
-  {projects.map((p) => (
-    <a class="project" href={u(`projeler/${p.id}/`)}>
-      <div class="row"><span class="name">{p.data.title}</span><span class="year mono">{p.data.year}</span></div>
-      <p>{p.data.summary}</p>
-      <div class="stack mono">{p.data.stack.join(" · ")}</div>
-    </a>
-  ))}
+  <div class="projects">
+    {projects.map((p) => (
+      <a class="project" href={u(`projeler/${p.id}/`)}>
+        <div class="row"><span class="name">{p.data.title}</span><span class="year mono">{p.data.year}</span></div>
+        <p>{p.data.summary}</p>
+        <div class="stack mono">{p.data.stack.join(" · ")}</div>
+      </a>
+    ))}
+  </div>
 
   <h2 class="mono" id="yazilar">yazılar</h2>
   <PostList posts={posts} />
