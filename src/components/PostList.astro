@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { u, shortDate } from "../lib/site";
+
+interface Props {
+  posts: CollectionEntry<"yazilar">[];
+  empty?: string;
+}
+const { posts, empty = "Henüz yazı yok." } = Astro.props;
+---
+{posts.length === 0 && <p class="empty">{empty}</p>}
+{posts.map((p) => (
+  <a class="post" href={u(`yazilar/${p.id}/`)}>
+    <span class="title">{p.data.title}{p.data.draft && <span class="tag mono">taslak</span>}</span>
+    <time class="mono" datetime={p.data.date.toISOString()}>{shortDate(p.data.date)}</time>
+    <span class="sub">{p.data.subtitle}</span>
+  </a>
+))}

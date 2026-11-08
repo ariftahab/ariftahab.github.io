@@ -1,0 +1,32 @@
+---
+import { getEntry, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { u, getPosts, shortDate } from "../../lib/site";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const project = post.data.proje ? await getEntry(post.data.proje) : undefined;
+const d = post.data;
+---
+<Base title={d.title} description={d.subtitle}>
+  <a class="back mono" href={u("#yazilar")}>← yazılar</a>
+
+  <article>
+    <div class="p-head">
+      <h1>{d.title}</h1>
+      <p class="lead">{d.subtitle}</p>
+      <div class="meta mono">
+        <time datetime={d.date.toISOString()}>{shortDate(d.date)}</time>
+        {project && <a href={u(`projeler/${project.id}/`)}>{project.data.title}</a>}
+      </div>
+    </div>
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

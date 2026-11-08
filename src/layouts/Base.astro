@@ -1,0 +1,49 @@
+---
+import "../styles/global.css";
+import { NAME, EMAIL, GITHUB, LINKEDIN, LINKEDIN_LABEL, u } from "../lib/site";
+
+interface Props {
+  title?: string;
+  description?: string;
+  flow?: boolean; // load the workflow diagram script
+}
+const { title, description = "RAG, agent'lar ve yerel modeller üzerine projeler ve yazılar.", flow = false } = Astro.props;
+const pageTitle = title ? `${title} · ${NAME}` : NAME;
+---
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{pageTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="bar">
+    <a class="home" href={u()}>{NAME}</a>
+    <nav class="mono">
+      <a href={u("#projeler")}>projeler</a>
+      <a href={u("#yazilar")}>yazılar</a>
+      <a href={GITHUB}>github</a>
+      <a href="#iletisim">iletişim</a>
+    </nav>
+  </div>
+
+  <main>
+    <slot />
+  </main>
+
+  <footer id="iletisim">
+    <h2 class="mono">iletişim</h2>
+    <div class="contact">
+      <a href={`mailto:${EMAIL}`}><span class="mono">e-posta</span>{EMAIL}</a>
+      <a href={LINKEDIN}><span class="mono">linkedin</span>{LINKEDIN_LABEL}</a>
+    </div>
+    <div class="in mono"><span>© {new Date().getFullYear()} {NAME}</span></div>
+  </footer>
+
+  {flow && <script is:inline src={u("flow.js")}></script>}
+</body>
+</html>
