@@ -1,0 +1,13 @@
+---
+// GitHub Pages serves dist/404.html for any path that does not exist.
+import Base from "../layouts/Base.astro";
+import { u } from "../lib/site";
+---
+<Base title="Sayfa bulunamadı">
+  <header>
+    <p class="mono" style="color: var(--dim)">404</p>
+    <h1 style="margin-top: 8px">Bu sayfa yok.</h1>
+    <p>Aradığın sayfa taşınmış ya da hiç olmamış olabilir.</p>
+  </header>
+  <p style="margin-top: 32px"><a class="gh mono" href={u()}>← ana sayfaya dön</a></p>
+</Base>
