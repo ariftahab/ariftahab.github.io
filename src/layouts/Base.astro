@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { NAME, EMAIL, GITHUB, LINKEDIN, LINKEDIN_LABEL, u } from "../lib/site";
+import { NAME, GITHUB, u } from "../lib/site";
 
 interface Props {
   title?: string;
@@ -23,10 +23,10 @@ const pageTitle = title ? `${title} · ${NAME}` : NAME;
   <div class="bar">
     <a class="home" href={u()}>{NAME}</a>
     <nav class="mono">
-      <a href={u("#projeler")}>projeler</a>
-      <a href={u("#yazilar")}>yazılar</a>
+      <a href={u("projeler/")}>projeler</a>
+      <a href={u("yazilar/")}>yazılar</a>
       <a href={GITHUB}>github</a>
-      <a href="#iletisim">iletişim</a>
+      <a href={u("iletisim/")}>iletişim</a>
     </nav>
   </div>
 
@@ -34,12 +34,7 @@ const pageTitle = title ? `${title} · ${NAME}` : NAME;
     <slot />
   </main>
 
-  <footer id="iletisim">
-    <h2 class="mono">iletişim</h2>
-    <div class="contact">
-      <a href={`mailto:${EMAIL}`}><span class="mono">e-posta</span>{EMAIL}</a>
-      <a href={LINKEDIN}><span class="mono">linkedin</span>{LINKEDIN_LABEL}</a>
-    </div>
+  <footer>
     <div class="in mono"><span>© {new Date().getFullYear()} {NAME}</span></div>
   </footer>
 

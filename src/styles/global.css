@@ -39,11 +39,10 @@ h2 { color: var(--dim); font-weight: 400; margin: 80px 0 16px; }
 
 html { scroll-behavior: smooth; }
 footer { max-width: 760px; margin: 0 auto; padding: 0 16px 56px; }
-footer h2 { margin-top: 0; }
 .contact a { display: flex; gap: 24px; padding: 10px 0; color: var(--muted); transition: color .15s; }
 .contact a:hover { color: var(--accent); }
 .contact .mono { color: var(--dim); width: 64px; flex-shrink: 0; padding-top: 2px; }
-footer .in { margin-top: 64px; border-top: 1px solid var(--line); padding-top: 20px; color: var(--dim); display: flex; justify-content: space-between; }
+footer .in { margin-top: 96px; border-top: 1px solid var(--line); padding-top: 20px; color: var(--dim); display: flex; justify-content: space-between; }
 
 /* system diagram */
 .diagram-wrap { margin: 40px 0 0; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 20px 12px; }
@@ -115,3 +114,7 @@ article .prose { margin-top: 32px; }
 /* GitHub link on project pages */
 .gh { display: inline-block; margin-top: 20px; padding: 8px 14px; border: 1px solid var(--line); border-radius: 6px; color: var(--fg); transition: border-color .15s, color .15s; }
 .gh:hover { border-color: var(--accent); color: var(--accent); }
+
+/* section pages (projeler, yazılar, iletişim) */
+.section-body { margin-top: 32px; }
+.back-home { margin-top: 48px; }

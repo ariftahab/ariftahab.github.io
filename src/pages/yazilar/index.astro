@@ -1,0 +1,15 @@
+---
+import Base from "../../layouts/Base.astro";
+import PostList from "../../components/PostList.astro";
+import BackHome from "../../components/BackHome.astro";
+import { getPosts } from "../../lib/site";
+
+const posts = await getPosts();
+---
+<Base title="Yazılar">
+  <header>
+    <h1>Yazılar</h1>
+  </header>
+  <div class="section-body"><PostList posts={posts} /></div>
+  <BackHome />
+</Base>

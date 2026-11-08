@@ -1,9 +1,9 @@
 ---
 import Base from "../layouts/Base.astro";
 import PostList from "../components/PostList.astro";
-import { NAME, u, getPosts, getProjects } from "../lib/site";
+import ProjectGrid from "../components/ProjectGrid.astro";
+import { NAME, getPosts } from "../lib/site";
 
-const projects = await getProjects();
 const posts = await getPosts();
 ---
 <Base>
@@ -13,15 +13,7 @@ const posts = await getPosts();
   </header>
 
   <h2 class="mono" id="projeler">projeler</h2>
-  <div class="projects">
-    {projects.map((p) => (
-      <a class="project" href={u(`projeler/${p.id}/`)}>
-        <div class="row"><span class="name">{p.data.title}</span><span class="year mono">{p.data.year}</span></div>
-        <p>{p.data.summary}</p>
-        <div class="stack mono">{p.data.stack.join(" · ")}</div>
-      </a>
-    ))}
-  </div>
+  <ProjectGrid />
 
   <h2 class="mono" id="yazilar">yazılar</h2>
   <PostList posts={posts} />

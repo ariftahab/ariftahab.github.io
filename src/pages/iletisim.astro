@@ -1,0 +1,16 @@
+---
+import Base from "../layouts/Base.astro";
+import BackHome from "../components/BackHome.astro";
+import { EMAIL, GITHUB, LINKEDIN, LINKEDIN_LABEL } from "../lib/site";
+---
+<Base title="İletişim">
+  <header>
+    <h1>İletişim</h1>
+  </header>
+  <div class="contact section-body">
+    <a href={`mailto:${EMAIL}`}><span class="mono">e-posta</span>{EMAIL}</a>
+    <a href={LINKEDIN}><span class="mono">linkedin</span>{LINKEDIN_LABEL}</a>
+    <a href={GITHUB}><span class="mono">github</span>github.com/ariftahab</a>
+  </div>
+  <BackHome />
+</Base>
