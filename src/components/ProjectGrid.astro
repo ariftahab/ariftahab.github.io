@@ -1,11 +1,14 @@
 ---
-import { u, getProjects } from "../lib/site";
+import { getProjects } from "../lib/site";
+import { href, type Lang } from "../lib/i18n";
 
-const projects = await getProjects();
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const projects = await getProjects(lang);
 ---
 <div class="projects">
   {projects.map((p) => (
-    <a class="project" href={u(`projeler/${p.id}/`)}>
+    <a class="project" href={href(lang, "projects", p.id)}>
       <div class="row"><span class="name">{p.data.title}</span><span class="year mono">{p.data.year}</span></div>
       <p>{p.data.summary}</p>
       <div class="stack mono">{p.data.stack.join(" · ")}</div>

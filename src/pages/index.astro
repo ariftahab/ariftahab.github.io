@@ -1,20 +1,4 @@
 ---
-import Base from "../layouts/Base.astro";
-import PostList from "../components/PostList.astro";
-import ProjectGrid from "../components/ProjectGrid.astro";
-import { NAME, getPosts } from "../lib/site";
-
-const posts = await getPosts();
+import Home from "../views/Home.astro";
 ---
-<Base>
-  <header>
-    <h1>{NAME}</h1>
-    <p>RAG, agent'lar ve yerel modeller üzerine çalışıyorum. Burada yaptığım projeleri ve onlardan öğrendiklerimi yazıyorum.</p>
-  </header>
-
-  <h2 class="mono" id="projeler">projeler</h2>
-  <ProjectGrid />
-
-  <h2 class="mono" id="yazilar">yazılar</h2>
-  <PostList posts={posts} />
-</Base>
+<Home lang="tr" />

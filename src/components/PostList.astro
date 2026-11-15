@@ -1,17 +1,18 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import { u, shortDate } from "../lib/site";
+import { shortDate, type Post } from "../lib/site";
+import { href, t, type Lang } from "../lib/i18n";
 
 interface Props {
-  posts: CollectionEntry<"yazilar">[];
+  lang: Lang;
+  posts: Post[];
   empty?: string;
 }
-const { posts, empty = "Henüz yazı yok." } = Astro.props;
+const { lang, posts, empty = t[lang].noPosts } = Astro.props;
 ---
 {posts.length === 0 && <p class="empty">{empty}</p>}
 {posts.map((p) => (
-  <a class="post" href={u(`yazilar/${p.id}/`)}>
-    <span class="title">{p.data.title}{p.data.draft && <span class="tag mono">taslak</span>}</span>
+  <a class="post" href={href(lang, "posts", p.id)}>
+    <span class="title">{p.data.title}{p.data.draft && <span class="tag mono">{t[lang].draft}</span>}</span>
     <time class="mono" datetime={p.data.date.toISOString()}>{shortDate(p.data.date)}</time>
     <span class="sub">{p.data.subtitle}</span>
   </a>

@@ -1,21 +1,33 @@
 ---
 import "../styles/global.css";
 import { NAME, GITHUB, u } from "../lib/site";
+import { LANGS, href, parsePath, other, t, type Lang } from "../lib/i18n";
 
 interface Props {
   title?: string;
   description?: string;
+  /** URLs of this page in each language. Defaults to the same page in the other language. */
+  alternates?: Partial<Record<Lang, string>>;
 }
-const { title, description = "RAG, agent'lar ve yerel modeller üzerine projeler ve yazılar." } = Astro.props;
+const here = parsePath(Astro.url.pathname);
+const lang = here.lang;
+const s = t[lang];
+const { title, description = s.description } = Astro.props;
+const alternates: Record<Lang, string> = {
+  [lang]: Astro.url.pathname,
+  [other(lang)]: href(other(lang), here.page, here.id),
+  ...Astro.props.alternates,
+} as Record<Lang, string>;
 const pageTitle = title ? `${title} · ${NAME}` : NAME;
 ---
 <!doctype html>
-<html lang="tr">
+<html lang={lang}>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
+  {LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(alternates[l], Astro.site)} />)}
   <link rel="icon" href={u("favicon.svg")} type="image/svg+xml" />
   <link rel="icon" href={u("favicon-32.png")} type="image/png" sizes="32x32" />
   <link rel="apple-touch-icon" href={u("apple-touch-icon.png")} />
@@ -25,12 +37,22 @@ const pageTitle = title ? `${title} · ${NAME}` : NAME;
 </head>
 <body>
   <div class="bar">
-    <a class="home" href={u()}>{NAME}</a>
+    <a class="home" href={href(lang, "home")}>{NAME}</a>
     <nav class="mono">
-      <a href={u("projeler/")}>projeler</a>
-      <a href={u("yazilar/")}>yazılar</a>
+      <a href={href(lang, "projects")}>{s.projects}</a>
+      <a href={href(lang, "posts")}>{s.posts}</a>
       <a href={GITHUB}>github</a>
-      <a href={u("iletisim/")}>iletişim</a>
+      <a href={href(lang, "contact")}>{s.contact}</a>
+      <span class="lang">
+        {LANGS.map((l, i) => (
+          <>
+            {i > 0 && <span aria-hidden="true">/</span>}
+            {l === lang
+              ? <span class="on" aria-current="true">{l}</span>
+              : <a href={alternates[l]} hreflang={l} lang={l}>{l}</a>}
+          </>
+        ))}
+      </span>
     </nav>
   </div>
 

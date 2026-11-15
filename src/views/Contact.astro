@@ -1,0 +1,21 @@
+---
+import Base from "../layouts/Base.astro";
+import BackHome from "../components/BackHome.astro";
+import { EMAIL, GITHUB, LINKEDIN, LINKEDIN_LABEL } from "../lib/site";
+import { t, type Lang } from "../lib/i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const s = t[lang];
+---
+<Base title={s.contactTitle}>
+  <header>
+    <h1>{s.contactTitle}</h1>
+  </header>
+  <div class="contact section-body">
+    <a href={`mailto:${EMAIL}`}><span class="mono">{s.email}</span>{EMAIL}</a>
+    <a href={LINKEDIN}><span class="mono">linkedin</span>{LINKEDIN_LABEL}</a>
+    <a href={GITHUB}><span class="mono">github</span>github.com/ariftahab</a>
+  </div>
+  <BackHome lang={lang} />
+</Base>

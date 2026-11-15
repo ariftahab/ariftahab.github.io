@@ -1,0 +1,52 @@
+---
+import { render } from "astro:content";
+import Base from "../layouts/Base.astro";
+import PostList from "../components/PostList.astro";
+import Diagram from "../components/Diagram.astro";
+import { u, getPosts, getProjects, type Project } from "../lib/site";
+import { href, other, t, type Lang } from "../lib/i18n";
+
+interface Props { lang: Lang; project: Project }
+const { lang, project } = Astro.props;
+const s = t[lang];
+const { Content } = await render(project);
+const posts = (await getPosts(lang)).filter((p) => p.data.proje?.id === project.id); // newest first
+const d = project.data;
+
+// Point the switcher at the same project in the other language, or at its project list if it is not translated.
+const o = other(lang);
+const translated = (await getProjects(o)).some((p) => p.id === project.id);
+const alternates = { [o]: translated ? href(o, "projects", project.id) : href(o, "projects") };
+---
+<Base title={d.title} description={d.summary} alternates={alternates}>
+  <a class="back mono" href={href(lang, "projects")}>← {s.projects}</a>
+
+  <div class="p-head">
+    <h1>{d.title}</h1>
+    <p class="lead">{d.lead}</p>
+    <div class="meta mono">
+      <span>{d.year}</span>
+      <span>{d.stack.join(" · ")}</span>
+    </div>
+    {d.github && <a class="gh mono" href={d.github}>{s.viewOnGithub}</a>}
+  </div>
+
+  {d.diagram && <Diagram diagram={d.diagram} lang={lang} />}
+
+  {d.gallery && (
+    <div class="gallery">
+      {d.gallery.map((img) => (
+        <figure><img src={u(img.src)} alt={img.alt} loading="lazy" /><figcaption class="mono">{img.alt}</figcaption></figure>
+      ))}
+    </div>
+  )}
+
+  {project.body?.trim() && (
+    <div class="prose">
+      <Content />
+    </div>
+  )}
+
+  <h2 class="mono">{s.relatedPosts}</h2>
+  <PostList lang={lang} posts={posts} empty={s.noRelatedPosts} />
+</Base>

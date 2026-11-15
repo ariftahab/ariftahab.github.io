@@ -2,9 +2,10 @@
 // Renders a system diagram as inline SVG at build time (no client JavaScript).
 // Layout is a grid: each node sits in a column/row cell; groups are dashed boxes around a block of cells.
 import type { Diagram } from "../lib/diagram";
+import { t, type Lang } from "../lib/i18n";
 
-interface Props { diagram: Diagram }
-const { diagram } = Astro.props;
+interface Props { diagram: Diagram; lang: Lang }
+const { diagram, lang } = Astro.props;
 
 const W = diagram.width ?? 720;
 const M = 8; // outer margin
@@ -63,7 +64,7 @@ const groups = (diagram.groups ?? []).map((g) => {
 ---
 <figure class="diagram-wrap">
   <div class="diagram-scroll">
-    <svg class="diagram" viewBox={`0 0 ${W} ${H}`} style={`min-width:${Math.round(W * 0.8)}px`} role="img" aria-label={diagram.caption ?? "sistem şeması"}>
+    <svg class="diagram" viewBox={`0 0 ${W} ${H}`} style={`min-width:${Math.round(W * 0.8)}px`} role="img" aria-label={diagram.caption ?? t[lang].diagram}>
       <defs>
         <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
           <path d="M0 1 L9 5 L0 9" class="arrowhead" />

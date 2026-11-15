@@ -118,3 +118,9 @@ article .prose { margin-top: 32px; }
 /* section pages (projeler, yazılar, iletişim) */
 .section-body { margin-top: 32px; }
 .back-home { margin-top: 48px; }
+
+/* language switcher at the end of the top bar: current language bright, the other dim */
+.bar nav .lang { display: flex; gap: 6px; color: var(--dim); margin-left: 4px; }
+.bar nav .lang .on { color: var(--fg); }
+.bar nav .lang a { color: var(--dim); }
+.bar nav .lang a:hover { color: var(--accent); }

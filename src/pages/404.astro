@@ -1,13 +1,24 @@
 ---
-// GitHub Pages serves dist/404.html for any path that does not exist.
+// GitHub Pages serves dist/404.html for any missing path, in either language.
+// The page is built in Turkish; the inline script swaps the text to English for paths under /en/.
 import Base from "../layouts/Base.astro";
 import BackHome from "../components/BackHome.astro";
 ---
 <Base title="Sayfa bulunamadı">
   <header>
     <p class="mono" style="color: var(--dim)">404</p>
-    <h1 style="margin-top: 8px">Bu sayfa yok.</h1>
-    <p>Aradığın sayfa taşınmış ya da hiç olmamış olabilir.</p>
+    <h1 style="margin-top: 8px" data-en="This page doesn't exist.">Bu sayfa yok.</h1>
+    <p data-en="The page you're looking for may have moved, or never existed.">Aradığın sayfa taşınmış ya da hiç olmamış olabilir.</p>
   </header>
-  <BackHome />
+  <BackHome lang="tr" />
 </Base>
+<script is:inline>
+  if (/^\/en(\/|$)/.test(location.pathname)) {
+    document.documentElement.lang = "en";
+    document.title = "Page not found · Arif Taha Bülbül";
+    document.querySelectorAll("[data-en]").forEach((el) => (el.textContent = el.dataset.en));
+    const home = document.querySelector(".back-home a");
+    home.textContent = "← back to home";
+    home.href = "/en/";
+  }
+</script>

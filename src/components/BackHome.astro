@@ -1,4 +1,7 @@
 ---
-import { u } from "../lib/site";
+import { href, t, type Lang } from "../lib/i18n";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
 ---
-<p class="back-home"><a class="gh mono" href={u()}>← ana sayfaya dön</a></p>
+<p class="back-home"><a class="gh mono" href={href(lang, "home")}>{t[lang].backHome}</a></p>

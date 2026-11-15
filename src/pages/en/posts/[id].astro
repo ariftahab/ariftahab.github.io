@@ -1,0 +1,9 @@
+---
+import Post from "../../../views/Post.astro";
+import { getPosts } from "../../../lib/site";
+
+export async function getStaticPaths() {
+  return (await getPosts("en")).map((post) => ({ params: { id: post.id }, props: { post } }));
+}
+---
+<Post lang="en" post={Astro.props.post} />
