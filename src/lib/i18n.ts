@@ -36,7 +36,7 @@ export const other = (lang: Lang): Lang => (lang === "tr" ? "en" : "tr");
 /** UI strings. Content (projects, posts) lives in Markdown, one copy per language. */
 export const t = {
   tr: {
-    description: "RAG, agent'lar ve yerel modeller üzerine projeler ve yazılar.",
+    description: "Arif Taha Bülbül'ün kişisel sitesi: RAG, agent'lar ve yerel modeller üzerine projeler ve yazılar.",
     intro: "RAG, agent'lar ve yerel modeller üzerine çalışıyorum. Burada yaptığım projeleri ve onlardan öğrendiklerimi yazıyorum.",
     projects: "projeler",
     posts: "yazılar",
@@ -54,7 +54,7 @@ export const t = {
     diagram: "sistem şeması",
   },
   en: {
-    description: "Projects and writing on RAG, agents and local models.",
+    description: "Personal site of Arif Taha Bülbül: projects and writing on RAG, agents and local models.",
     intro: "I work on RAG, agents and local models. This is where I keep the projects I build and write about what I learn from them.",
     projects: "projects",
     posts: "posts",

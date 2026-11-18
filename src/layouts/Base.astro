@@ -1,6 +1,6 @@
 ---
 import "../styles/global.css";
-import { NAME, GITHUB, u } from "../lib/site";
+import { NAME, GITHUB, LINKEDIN, u } from "../lib/site";
 import { LANGS, href, parsePath, other, t, type Lang } from "../lib/i18n";
 
 interface Props {
@@ -19,6 +19,17 @@ const alternates: Record<Lang, string> = {
   ...Astro.props.alternates,
 } as Record<Lang, string>;
 const pageTitle = title ? `${title} · ${NAME}` : NAME;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const isHome = here.page === "home";
+// Tells Google who this site is about, so it can match searches for the name (also without Turkish letters).
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: NAME,
+  alternateName: ["Arif Taha Bulbul", "Arif Bülbül", "Arif Bulbul"],
+  url: new URL("/", Astro.site).href,
+  sameAs: [GITHUB, LINKEDIN],
+};
 ---
 <!doctype html>
 <html lang={lang}>
@@ -27,6 +38,15 @@ const pageTitle = title ? `${title} · ${NAME}` : NAME;
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{pageTitle}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="sitemap" href={u("sitemap-index.xml")} />
+  <meta property="og:type" content={isHome ? "profile" : "article"} />
+  <meta property="og:site_name" content={NAME} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content={lang === "tr" ? "tr_TR" : "en_US"} />
+  {isHome && <script type="application/ld+json" set:html={JSON.stringify(person)} />}
   {LANGS.map((l) => <link rel="alternate" hreflang={l} href={new URL(alternates[l], Astro.site)} />)}
   <link rel="icon" href={u("favicon.svg")} type="image/svg+xml" />
   <link rel="icon" href={u("favicon-32.png")} type="image/png" sizes="32x32" />
